@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns:b="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.springframework.org/schema/security"
+  xsi:schemaLocation="
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd
+        http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <!-- TODO review -->
+  <http auto-config="true"> <!-- shorter syntax responsible for login web form, basic authentication and logout -->
+    <intercept-url pattern="/" access="hasRole('ROLE_ADMIN')"/> <!-- template for URI root accessible for admin role -->
+  </http>
+  <authentication-manager>
+    <authentication-provider>
+      <user-service>
+        <user name="admin" password="admin" authorities="ROLE_ADMIN"/> <!-- Добавляем пользователя который будет иметь права админа -->
+      </user-service>
+    </authentication-provider>
+  </authentication-manager>
+</b:beans>
