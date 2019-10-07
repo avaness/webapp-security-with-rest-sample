@@ -9,13 +9,16 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <!-- TODO review -->
-  <http auto-config="true"> <!-- shorter syntax responsible for login web form, basic authentication and logout -->
-    <intercept-url pattern="/" access="hasRole('ROLE_ADMIN')"/> <!-- template for URI root accessible for admin role -->
+  <http auto-config="true" use-expressions="true"> <!-- shorter syntax responsible for login web form, basic authentication and logout -->
+<!--    <intercept-url pattern="/" access="hasRole('ROLE_USER')"/> &lt;!&ndash; template for URI root accessible for admin role &ndash;&gt;-->
+    <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+    <intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
   </http>
   <authentication-manager>
     <authentication-provider>
       <user-service>
-        <user name="admin" password="admin" authorities="ROLE_ADMIN"/> <!-- Добавляем пользователя который будет иметь права админа -->
+        <user name="admin" password="admin" authorities="ROLE_ADMIN, ROLE_USER"/>
+        <user name="user" password="user" authorities="ROLE_USER"/>
       </user-service>
     </authentication-provider>
   </authentication-manager>

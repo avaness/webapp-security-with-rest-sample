@@ -5,8 +5,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>vikram.samples</groupId>
-  <artifactId>webapp-security-with-rest-sample-2</artifactId>
-<!--  <packaging>war</packaging>-->
+  <artifactId>webapp-security-with-rest-sample</artifactId>
+  <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
 
   <properties>
@@ -44,6 +44,13 @@
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
       <version>1.2</version>
+    </dependency>
+
+    <!-- Spring REST jackson JSON Processing API -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.10.0</version>
     </dependency>
 
     <!-- embedding tomcat -->
@@ -90,6 +97,16 @@
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-taglibs</artifactId>
       <version>${spring-security-version}</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+    <!--Common Java Annotations.
+       For this app it includes security annotation: @RolesAllowed; @DenyAll, @RunAs, @PermitAll
+        -->
+    <dependency>
+      <groupId>javax.annotation</groupId>
+      <artifactId>jsr250-api</artifactId>
+      <version>1.0</version>
     </dependency>
   </dependencies>
   <build>
