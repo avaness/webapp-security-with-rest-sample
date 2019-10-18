@@ -20,8 +20,29 @@
   <!-- turning on @RequestMapping, @RestController etc., ie all for catching by Spring MVC -->
   <mvc:annotation-driven/>
 
+  <!-- TODO This is required by swagger to setup -->
+  <bean id="swagger2Config"
+        class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration">
+  </bean>
+
+  <!-- TODO swagger-ui resources to enable /swagger-ui.html -->
+  <mvc:resources order="1" location="classpath:/META-INF/resources/" mapping="/resources/**" />
+  <mvc:resources mapping="swagger-ui.html"
+                 location="classpath:/META-INF/resources/" />
+  <mvc:resources mapping="/webjars/**"
+                 location="classpath:/META-INF/resources/webjars/" />
+
+
   <!-- vikram.* package is root for annotated components scanning -->
-  <context:component-scan base-package="vikram"/>
+  <context:component-scan base-package="vikram">
+    <!-- TODO by swagger docs it' required, but still not sure -->
+    <context:include-filter type="annotation"
+                            expression="org.springframework.stereotype.Controller" />
+    <context:include-filter type="annotation"
+                            expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+    <!-- used for scanning annotations in for beans already registered in .xmls -->
+  </context:component-scan>
+
 
 
   <!-- jsp views are enabled by this bean-->
@@ -33,7 +54,5 @@
   <mvc:view-controller path="/" view-name="/index"/>
   <mvc:view-controller path="/index" view-name="/index"/>
 
-
-  <!-- used for scanning annotations in for beans already registered in .xmls -->
   <context:annotation-config/>
 </beans>

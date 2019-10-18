@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import vikram.rest.v1.model.RuleType;
 
 @RestController
-@RequestMapping("/rest/api/v1")
+@RequestMapping(path="/rest/api/v1")
 @RolesAllowed("ROLE_ADMIN")
 public class RuleTypeController {
 
