@@ -17,6 +17,7 @@ public class RuleTypeController {
   @RequestMapping(value = "/ruletype", method= RequestMethod.GET)
 
   public List<RuleType> getRuleTypes() {
+
     return Arrays.asList(
         new RuleType("rule1", "abcdef"),
         new RuleType("rule2", "fedcba")
